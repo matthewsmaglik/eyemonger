@@ -3,7 +3,7 @@
   --ink:#0E0E0E;
   --paper:#EDEBE4;
   --rule:#2A2A28;
-  --stone:#9C9A94;
+  --stone:#8FA5B5;
   --mono:'Space Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
   --gut:24px;
   color-scheme:dark;
@@ -33,7 +33,9 @@ a:focus-visible,button:focus-visible{outline:1px solid currentColor;outline-offs
 .links a{display:inline-flex;align-items:center;min-height:44px}
 .bl.links,.br.links{bottom:calc(var(--gut) - 15px)}
 .tl.links{top:calc(var(--gut) - 15px)}
-.hero .tl.links{color:var(--stone)}
+.hero{overflow:hidden;isolation:isolate}
+.hero .bgv{z-index:-1}
+.hero .corner,.hero .tl.links{color:var(--paper)}
 
 /* hero */
 .hero{min-height:860px;gap:56px;padding-block:140px}
@@ -43,9 +45,7 @@ a:focus-visible,button:focus-visible{outline:1px solid currentColor;outline-offs
 
 /* intro */
 .intro{border-top:1px solid var(--rule);padding:96px var(--gut);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
-.intro{position:relative;overflow:hidden;isolation:isolate}
-.intro .bgv{z-index:-1}
-.intro .label{padding-top:12px;color:var(--paper)}
+.intro .label{padding-top:12px}
 .intro p{grid-column:span 3;margin:0;max-width:30ch;font-size:40px;line-height:1.2;text-wrap:balance}
 
 /* work bar */

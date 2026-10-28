@@ -2,14 +2,14 @@
   var tiles = [
     { n: '01', c: 'film', f: 1, wide: 1, tags: 'film · brand', bg: '#EDEBE4', fg: '#0E0E0E', v: 'loop-01-drift' },
     { n: '02', c: 'design', f: 1, tags: 'graphic design · culture', bg: '#0E0E0E', fg: '#EDEBE4', v: 'loop-02-bloom' },
-    { n: '03', c: 'direction', f: 1, tags: 'creative direction · brand', bg: '#2440D8', fg: '#EDEBE4' },
-    { n: '04', c: 'producing', tags: 'producing · film', bg: '#9C9A94', fg: '#0E0E0E' },
-    { n: '05', c: 'original', f: 1, tags: 'film · original', bg: '#CBA97E', fg: '#0E0E0E', v: 'loop-03-mesh' },
-    { n: '06', c: 'direction', f: 1, wide: 1, tags: 'creative direction · culture', bg: '#B8321C', fg: '#EDEBE4', v: 'loop-06-flow' },
+    { n: '03', c: 'direction', f: 1, tags: 'creative direction · brand', bg: '#2C5FD0', fg: '#EDEBE4' },
+    { n: '04', c: 'producing', tags: 'producing · film', bg: '#8FA5B5', fg: '#0E0E0E' },
+    { n: '05', c: 'original', f: 1, tags: 'film · original', bg: '#C9892F', fg: '#0E0E0E', v: 'loop-03-mesh' },
+    { n: '06', c: 'direction', f: 1, wide: 1, tags: 'creative direction · culture', bg: '#6E5AA8', fg: '#EDEBE4' },
     { n: '07', c: 'design', tags: 'graphic design · brand', bg: '#EDEBE4', fg: '#0E0E0E' },
-    { n: '08', c: 'producing', tags: 'producing · culture', bg: '#1F4D4A', fg: '#EDEBE4', v: 'loop-04-tide' },
-    { n: '09', c: 'film', tags: 'film · culture', bg: '#0E0E0E', fg: '#EDEBE4' },
-    { n: '10', c: 'original', tags: 'graphic design · original', bg: '#E3B23C', fg: '#0E0E0E', v: 'loop-05-iris' }
+    { n: '08', c: 'producing', tags: 'producing · culture', bg: '#5F7D52', fg: '#EDEBE4', v: 'loop-04-tide' },
+    { n: '09', c: 'film', tags: 'film · culture', bg: '#7B4A2A', fg: '#EDEBE4' },
+    { n: '10', c: 'original', tags: 'graphic design · original', bg: '#8D7B3C', fg: '#0E0E0E', v: 'loop-05-iris' }
   ];
   var wall = document.getElementById('wall');
   tiles.forEach(function (t, i) {
@@ -20,7 +20,7 @@
     el.style.setProperty('--bg', t.bg);
     el.style.setProperty('--fg', t.fg);
     el.innerHTML =
-      (t.v ? '<video class="bgv" src="media/' + t.v + '.mp4" poster="media/' + t.v + '.jpg" muted loop playsinline preload="metadata" aria-hidden="true"></video>' : '') +
+      (t.v ? '<video class="bgv" src="media/' + t.v + '.mp4?v=2" poster="media/' + t.v + '.jpg?v=2" muted loop playsinline preload="metadata" aria-hidden="true"></video>' : '') +
       '<span class="corner tl">' + t.n + '</span>' +
       '<span class="corner tr">' + t.tags + '</span>' +
       '<span class="eye" data-eye="t' + i + '" aria-hidden="true">( o )</span>' +
@@ -147,8 +147,8 @@
     player.style.setProperty('--fg', t.fg);
     var pv = document.getElementById('plVideo');
     if (t.v) {
-      pv.poster = 'media/' + t.v + '.jpg';
-      pv.src = 'media/' + t.v + '.mp4';
+      pv.poster = 'media/' + t.v + '.jpg?v=2';
+      pv.src = 'media/' + t.v + '.mp4?v=2';
       pv.hidden = false;
       if (!still.matches) playIt(pv);
     } else {
