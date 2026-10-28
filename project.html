@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Case study · Eyemonger</title>
+<meta name="description" content="A case study from eyemonger, a new york creative company.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Eyemonger · case study">
+<meta property="og:image" content="https://eyemonger.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://eyemonger.com/og.png">
+<meta name="theme-color" content="#0E0E0E">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap">
+<link rel="stylesheet" href="styles.css?v=9">
+</head>
+<body data-page="case">
+<main id="top">
+  <section class="case-hero" id="caseHero" data-first aria-label="Project film">
+    <nav class="corner tl links" aria-label="Main">
+      <a href="./">eyemonger</a><span>/</span><a href="./#work">work</a><span>/</span><a href="./#about">about</a><span>/</span><a href="./#contact">contact</a>
+    </nav>
+    <div class="corner tr" id="heroTags"></div>
+    <span class="eye case-eye" data-eye="ch" aria-hidden="true">( o )</span>
+    <div class="corner bl" id="heroCount"></div>
+    <div class="corner br">[FILM · 00:00]</div>
+  </section>
+
+  <section class="case-head" aria-labelledby="caseTitle">
+    <span class="label">case study</span>
+    <div class="case-head-main">
+      <h1 id="caseTitle"></h1>
+      <p class="case-line" id="caseLine"></p>
+    </div>
+  </section>
+
+  <dl class="facts" aria-label="Project facts">
+    <div><dt>client</dt><dd id="fClient"></dd></div>
+    <div><dt>what we did</dt><dd id="fRole"></dd></div>
+    <div><dt>year</dt><dd id="fYear"></dd></div>
+    <div><dt>format</dt><dd id="fFormat"></dd></div>
+  </dl>
+
+  <section class="copy" aria-label="Overview">
+    <span class="label">overview</span>
+    <p class="lede" id="cLede"></p>
+  </section>
+  <section class="copy" aria-label="The brief">
+    <span class="label">the brief</span>
+    <p id="cBrief"></p>
+  </section>
+  <section class="copy" aria-label="What we made">
+    <span class="label">what we made</span>
+    <p id="cMade"></p>
+  </section>
+
+  <section class="stills" id="stills" aria-label="Stills"></section>
+
+  <section class="copy" aria-label="Reception">
+    <span class="label">reception</span>
+    <p id="cReception"></p>
+  </section>
+
+  <section class="bts" aria-label="Behind the scenes">
+    <div class="bts-head"><span class="label">behind the scenes</span></div>
+    <div class="bts-row" id="bts"></div>
+    <figure class="quote">
+      <blockquote><p><span id="cQuote"></span><span class="eye inline" data-eye="qe" aria-hidden="true">( o )</span></p></blockquote>
+      <figcaption id="cQuoteBy"></figcaption>
+    </figure>
+  </section>
+
+  <section class="press" aria-label="Press and awards">
+    <div>
+      <h2 class="label">press</h2>
+      <ul class="rows" id="press"></ul>
+    </div>
+    <div>
+      <h2 class="label">awards</h2>
+      <ul class="rows" id="awards"></ul>
+    </div>
+  </section>
+
+  <section class="credits" aria-label="Credits">
+    <h2 class="label">credits</h2>
+    <div class="credit-groups" id="credits"></div>
+    <button type="button" class="more-btn" id="moreCredits" aria-expanded="false">(show all credits)</button>
+  </section>
+
+  <a class="next" id="next" href="project.html">
+    <span class="corner tl">next project</span>
+    <span class="corner tr" id="nextTags"></span>
+    <span class="eye" data-eye="nx" aria-hidden="true">( o )</span>
+    <span class="next-title" id="nextTitle"></span>
+    <span class="corner br" id="nextCount"></span>
+  </a>
+  <div class="more"><a href="./#work">all work</a></div>
+
+  <footer id="contact" class="frame contact" aria-label="Contact">
+    <div class="corner tl">contact</div>
+    <div class="corner tr">new york</div>
+    <div class="corner bl links"><a href="https://www.instagram.com/eye.monger" target="_blank" rel="noopener">instagram</a></div>
+    <nav class="corner br links" aria-label="Footer"><a href="./">home</a><span>/</span><a href="./#work">work</a><span>/</span><a href="./#about">about</a></nav>
+    <p class="cword" aria-label="Eyemonger">eyem<span class="eye" data-eye="wm" data-n="3" aria-hidden="true">( o )</span>nger</p>
+    <p class="mail"><button type="button" id="copyMail" aria-describedby="copied">info@eyemonger.com</button></p>
+    <p class="copied" id="copied" aria-live="polite"></p>
+  </footer>
+</main>
+
+<button type="button" class="topeye" id="topEye" aria-label="Back to top" tabindex="-1"><span class="eye" data-eye="te" aria-hidden="true">( o )</span></button>
+
+<script src="projects.js?v=9"></script>
+<script src="eyes.js?v=9"></script>
+<script src="project.js?v=9"></script>
+</body>
+</html>
