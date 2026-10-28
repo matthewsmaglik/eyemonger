@@ -32,7 +32,7 @@
   // placeholder loops: play only while on screen, never with reduced motion
   var still = window.matchMedia('(prefers-reduced-motion: reduce)');
   function playIt(v) { v.muted = true; var p = v.play(); if (p && p.catch) p.catch(function () {}); }
-  var vids = Array.prototype.slice.call(wall.querySelectorAll('video'));
+  var vids = Array.prototype.slice.call(document.querySelectorAll('video.bgv:not(#plVideo)'));
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {

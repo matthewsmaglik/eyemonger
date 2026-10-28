@@ -43,7 +43,9 @@ a:focus-visible,button:focus-visible{outline:1px solid currentColor;outline-offs
 
 /* intro */
 .intro{border-top:1px solid var(--rule);padding:96px var(--gut);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
-.intro .label{padding-top:12px}
+.intro{position:relative;overflow:hidden;isolation:isolate}
+.intro .bgv{z-index:-1}
+.intro .label{padding-top:12px;color:var(--paper)}
 .intro p{grid-column:span 3;margin:0;max-width:30ch;font-size:40px;line-height:1.2;text-wrap:balance}
 
 /* work bar */
