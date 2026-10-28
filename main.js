@@ -1,15 +1,15 @@
 (function () {
   var tiles = [
-    { n: '01', c: 'film', f: 1, wide: 1, tags: 'film · brand', bg: '#EDEBE4', fg: '#0E0E0E' },
-    { n: '02', c: 'design', f: 1, tags: 'graphic design · culture', bg: '#0E0E0E', fg: '#EDEBE4' },
+    { n: '01', c: 'film', f: 1, wide: 1, tags: 'film · brand', bg: '#EDEBE4', fg: '#0E0E0E', v: 'loop-01-drift' },
+    { n: '02', c: 'design', f: 1, tags: 'graphic design · culture', bg: '#0E0E0E', fg: '#EDEBE4', v: 'loop-02-bloom' },
     { n: '03', c: 'direction', f: 1, tags: 'creative direction · brand', bg: '#2440D8', fg: '#EDEBE4' },
     { n: '04', c: 'producing', tags: 'producing · film', bg: '#9C9A94', fg: '#0E0E0E' },
-    { n: '05', c: 'original', f: 1, tags: 'film · original', bg: '#CBA97E', fg: '#0E0E0E' },
-    { n: '06', c: 'direction', f: 1, wide: 1, tags: 'creative direction · culture', bg: '#B8321C', fg: '#EDEBE4' },
+    { n: '05', c: 'original', f: 1, tags: 'film · original', bg: '#CBA97E', fg: '#0E0E0E', v: 'loop-03-mesh' },
+    { n: '06', c: 'direction', f: 1, wide: 1, tags: 'creative direction · culture', bg: '#B8321C', fg: '#EDEBE4', v: 'loop-06-flow' },
     { n: '07', c: 'design', tags: 'graphic design · brand', bg: '#EDEBE4', fg: '#0E0E0E' },
-    { n: '08', c: 'producing', tags: 'producing · culture', bg: '#1F4D4A', fg: '#EDEBE4' },
+    { n: '08', c: 'producing', tags: 'producing · culture', bg: '#1F4D4A', fg: '#EDEBE4', v: 'loop-04-tide' },
     { n: '09', c: 'film', tags: 'film · culture', bg: '#0E0E0E', fg: '#EDEBE4' },
-    { n: '10', c: 'original', tags: 'graphic design · original', bg: '#E3B23C', fg: '#0E0E0E' }
+    { n: '10', c: 'original', tags: 'graphic design · original', bg: '#E3B23C', fg: '#0E0E0E', v: 'loop-05-iris' }
   ];
   var wall = document.getElementById('wall');
   tiles.forEach(function (t, i) {
@@ -20,6 +20,7 @@
     el.style.setProperty('--bg', t.bg);
     el.style.setProperty('--fg', t.fg);
     el.innerHTML =
+      (t.v ? '<video class="bgv" src="media/' + t.v + '.mp4" poster="media/' + t.v + '.jpg" muted loop playsinline preload="metadata" aria-hidden="true"></video>' : '') +
       '<span class="corner tl">' + t.n + '</span>' +
       '<span class="corner tr">' + t.tags + '</span>' +
       '<span class="eye" data-eye="t' + i + '" aria-hidden="true">( o )</span>' +
@@ -27,6 +28,21 @@
       '<div class="corner br"><button type="button" data-play="' + i + '">quick play</button><a href="#work">case study</a></div>';
     wall.appendChild(el);
   });
+
+  // placeholder loops: play only while on screen, never with reduced motion
+  var still = window.matchMedia('(prefers-reduced-motion: reduce)');
+  function playIt(v) { v.muted = true; var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+  var vids = Array.prototype.slice.call(wall.querySelectorAll('video'));
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting && !still.matches) playIt(en.target); else en.target.pause();
+      });
+    }, { rootMargin: '200px 0px' });
+    vids.forEach(function (v) { io.observe(v); });
+  } else if (!still.matches) {
+    vids.forEach(playIt);
+  }
 
   var P = [[-0.6, -0.8, 1], [0.6, 0, 1], [-0.6, 0, 1], [-0.6, 0.8, 1], [0, 0, 0.1], [0.6, 0.8, 1]];
   function rest(id) {
@@ -129,6 +145,15 @@
     opener = b;
     player.style.setProperty('--bg', t.bg);
     player.style.setProperty('--fg', t.fg);
+    var pv = document.getElementById('plVideo');
+    if (t.v) {
+      pv.poster = 'media/' + t.v + '.jpg';
+      pv.src = 'media/' + t.v + '.mp4';
+      pv.hidden = false;
+      if (!still.matches) playIt(pv);
+    } else {
+      pv.pause(); pv.removeAttribute('src'); pv.load(); pv.hidden = true;
+    }
     document.getElementById('plTitle').textContent = t.n + '  [PROJECT TITLE]';
     player.hidden = false;
     closeBtn.focus();
@@ -136,6 +161,7 @@
   });
   function closePlayer() {
     player.hidden = true;
+    document.getElementById('plVideo').pause();
     if (opener) opener.focus();
   }
   closeBtn.addEventListener('click', closePlayer);

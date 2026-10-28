@@ -66,6 +66,9 @@ a:focus-visible,button:focus-visible{outline:1px solid currentColor;outline-offs
 .tile .br{right:22px;bottom:6px;display:flex;gap:18px}
 .tile .br button,.tile .br a{min-height:44px;display:inline-flex;align-items:center;color:inherit}
 .tile.off{opacity:.16}
+.bgv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.tile .eye,.player .eye{position:relative;z-index:1}
+.tile .corner,.player .corner{z-index:1}
 .more{display:flex;justify-content:center;padding:28px var(--gut);font-size:13px}
 .more a{min-height:44px;display:inline-flex;align-items:center}
 
