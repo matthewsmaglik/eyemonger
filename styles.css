@@ -4,6 +4,7 @@
   --paper:#EDEBE4;
   --rule:#2A2A28;
   --stone:#8FA5B5;
+  --ink-2:#4A4A46;
   --mono:'Space Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
   --gut:24px;
   color-scheme:dark;
@@ -84,11 +85,13 @@ a:focus-visible,button:focus-visible{outline:1px solid currentColor;outline-offs
 .do p{margin:0;font-size:13px;line-height:1.5;color:var(--stone);max-width:28ch}
 
 /* about + contact frames */
-.about{min-height:640px;gap:40px;padding:120px var(--gut)}
+.about{min-height:640px;gap:40px;padding:120px var(--gut);background:var(--paper);color:var(--ink)}
+.about .corner{color:var(--ink-2)}
+.about a{color:var(--ink)}
 .about .eye{font-size:64px}
 .about .eye.inline{font-size:inherit;line-height:inherit}
 .about p{margin:0;max-width:34ch;font-size:30px;line-height:1.3;text-wrap:balance}
-.about p.small{max-width:56ch;font-size:15px;line-height:1.6;color:var(--stone);text-wrap:pretty}
+.about p.small{max-width:56ch;font-size:15px;line-height:1.6;color:var(--ink-2);text-wrap:pretty}
 .contact{min-height:640px;gap:44px;border-top:1px solid var(--rule);padding:120px var(--gut)}
 .contact .pile{font-size:34px}
 .mail{margin:0;font-size:24px;line-height:1;white-space:pre;user-select:all}
