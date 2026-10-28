@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap">
-<link rel="stylesheet" href="styles.css?v=5">
+<link rel="stylesheet" href="styles.css?v=6">
 </head>
 <body>
 <main id="top">
@@ -41,12 +41,10 @@
       <span class="label">work · [00] projects</span>
       <div class="filters" role="group" aria-label="Filter work">
         <button type="button" data-f="all" aria-pressed="true">all</button>
-        <button type="button" data-f="featured" aria-pressed="false">featured</button>
-        <button type="button" data-f="film" aria-pressed="false">film</button>
-        <button type="button" data-f="design" aria-pressed="false">graphic design</button>
-        <button type="button" data-f="direction" aria-pressed="false">creative direction</button>
-        <button type="button" data-f="producing" aria-pressed="false">producing</button>
-        <button type="button" data-f="original" aria-pressed="false">original ideas</button>
+        <button type="button" data-f="video" aria-pressed="false">video</button>
+        <button type="button" data-f="photo" aria-pressed="false">photo</button>
+        <button type="button" data-f="graphics" aria-pressed="false">graphics</button>
+        <button type="button" data-f="global" aria-pressed="false">global</button>
       </div>
     </div>
     <div class="wall" id="wall"></div>
@@ -81,10 +79,9 @@
   <video class="bgv" id="plVideo" muted loop playsinline aria-hidden="true" hidden></video>
   <div class="corner tl" id="plTitle">[PROJECT TITLE]</div>
   <div class="corner tr"><button type="button" id="plClose">(close)</button></div>
-  <span class="eye" data-eye="pl" aria-hidden="true">( o )</span>
   <div class="corner bl">[VIDEO]</div>
   <div class="corner br">[00:00]</div>
 </div>
-<script src="main.js?v=5"></script>
+<script src="main.js?v=6"></script>
 </body>
 </html>

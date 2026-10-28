@@ -1,22 +1,21 @@
 (function () {
   var tiles = [
-    { n: '01', c: 'film', f: 1, wide: 1, tags: 'film · brand', bg: '#EDEBE4', fg: '#0E0E0E', v: 'loop-01-drift' },
-    { n: '02', c: 'design', f: 1, tags: 'graphic design · culture', bg: '#0E0E0E', fg: '#EDEBE4', v: 'loop-02-bloom' },
-    { n: '03', c: 'direction', f: 1, tags: 'creative direction · brand', bg: '#2C5FD0', fg: '#EDEBE4' },
-    { n: '04', c: 'producing', tags: 'producing · film', bg: '#8FA5B5', fg: '#0E0E0E' },
-    { n: '05', c: 'original', f: 1, tags: 'film · original', bg: '#C9892F', fg: '#0E0E0E', v: 'loop-03-mesh' },
-    { n: '06', c: 'direction', f: 1, wide: 1, tags: 'creative direction · culture', bg: '#6E5AA8', fg: '#EDEBE4' },
-    { n: '07', c: 'design', tags: 'graphic design · brand', bg: '#EDEBE4', fg: '#0E0E0E' },
-    { n: '08', c: 'producing', tags: 'producing · culture', bg: '#5F7D52', fg: '#EDEBE4', v: 'loop-04-tide' },
-    { n: '09', c: 'film', tags: 'film · culture', bg: '#7B4A2A', fg: '#EDEBE4' },
-    { n: '10', c: 'original', tags: 'graphic design · original', bg: '#8D7B3C', fg: '#0E0E0E', v: 'loop-05-iris' }
+    { n: '01', c: 'video', wide: 1, tags: 'video · brand', bg: '#EDEBE4', fg: '#0E0E0E', v: 'loop-01-drift' },
+    { n: '02', c: 'graphics', tags: 'graphics · culture', bg: '#0E0E0E', fg: '#EDEBE4', v: 'loop-02-bloom' },
+    { n: '03', c: 'global', tags: 'global · brand', bg: '#2C5FD0', fg: '#EDEBE4' },
+    { n: '04', c: 'photo', tags: 'photo · culture', bg: '#8FA5B5', fg: '#0E0E0E' },
+    { n: '05', c: 'video', tags: 'video · original', bg: '#C9892F', fg: '#0E0E0E', v: 'loop-03-mesh' },
+    { n: '06', c: 'graphics', wide: 1, tags: 'graphics · brand', bg: '#6E5AA8', fg: '#EDEBE4' },
+    { n: '07', c: 'photo', tags: 'photo · brand', bg: '#EDEBE4', fg: '#0E0E0E' },
+    { n: '08', c: 'global', tags: 'global · culture', bg: '#5F7D52', fg: '#EDEBE4', v: 'loop-04-tide' },
+    { n: '09', c: 'video', tags: 'video · culture', bg: '#7B4A2A', fg: '#EDEBE4' },
+    { n: '10', c: 'graphics', tags: 'graphics · original', bg: '#8D7B3C', fg: '#0E0E0E', v: 'loop-05-iris' }
   ];
   var wall = document.getElementById('wall');
   tiles.forEach(function (t, i) {
     var el = document.createElement('article');
     el.className = 'tile' + (t.wide ? ' wide' : '');
     el.dataset.c = t.c;
-    el.dataset.f = t.f ? '1' : '0';
     el.style.setProperty('--bg', t.bg);
     el.style.setProperty('--fg', t.fg);
     el.innerHTML =
@@ -127,7 +126,7 @@
       b.setAttribute('aria-pressed', on ? 'true' : 'false');
     });
     Array.prototype.forEach.call(wall.children, function (t) {
-      var match = f === 'all' || (f === 'featured' ? t.dataset.f === '1' : t.dataset.c === f);
+      var match = f === 'all' || t.dataset.c === f;
       t.classList.toggle('off', !match);
     });
     render();
@@ -166,6 +165,18 @@
   }
   closeBtn.addEventListener('click', closePlayer);
   player.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePlayer(); });
+
+  // in-page links glide to their section
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    var id = a.getAttribute('href').slice(1);
+    var target = id ? document.getElementById(id) : null;
+    if (!target) return;
+    e.preventDefault();
+    target.scrollIntoView({ behavior: still.matches ? 'auto' : 'smooth', block: 'start' });
+    try { history.replaceState(null, '', '#' + id); } catch (err) {}
+  });
 
   render();
 })();
