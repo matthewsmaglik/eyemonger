@@ -1,0 +1,118 @@
+/* Layout: the 7G frame. Black field, grey labels pinned to corners, centered type; work as a wall of cells split by 1px rules. Single dark look by design. */
+:root{
+  --ink:#0E0E0E;
+  --paper:#EDEBE4;
+  --rule:#2A2A28;
+  --stone:#9C9A94;
+  --mono:'Space Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  --gut:24px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:15px;line-height:1.6;overflow-x:clip}
+a{color:var(--paper);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:4px}
+button{font-family:inherit;font-size:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+a:focus-visible,button:focus-visible{outline:1px solid currentColor;outline-offset:3px}
+.eye{white-space:pre;font-weight:700;line-height:1}
+.label{font-size:13px;line-height:1;color:var(--stone)}
+@keyframes caret{0%,49%{opacity:1}50%,100%{opacity:0}}
+.caret{animation:caret 1s infinite}
+@media (prefers-reduced-motion:reduce){.caret{animation:none}}
+
+/* frame: a section with four corner slots */
+.frame{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.corner{position:absolute;font-size:13px;line-height:1;color:var(--stone)}
+.tl{left:var(--gut);top:var(--gut)}
+.tr{right:var(--gut);top:var(--gut);text-align:right}
+.bl{left:var(--gut);bottom:var(--gut)}
+.br{right:var(--gut);bottom:var(--gut);text-align:right}
+.links{display:flex;gap:10px;align-items:center}
+.links a{display:inline-flex;align-items:center;min-height:44px}
+.bl.links,.br.links{bottom:calc(var(--gut) - 15px)}
+.tl.links{top:calc(var(--gut) - 15px)}
+.hero .tl.links{color:var(--stone)}
+
+/* hero */
+.hero{min-height:860px;gap:56px;padding-block:140px}
+.pile{display:flex;flex-direction:column;align-items:center;font-size:64px;line-height:1.2}
+.pile div{display:flex;gap:.6em}
+.word{margin:0;font-size:48px;font-weight:400;line-height:1;white-space:pre}
+
+/* intro */
+.intro{border-top:1px solid var(--rule);padding:96px var(--gut);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.intro .label{padding-top:12px}
+.intro p{grid-column:span 3;margin:0;max-width:30ch;font-size:40px;line-height:1.2;text-wrap:balance}
+
+/* work bar */
+.bar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px 24px;min-height:56px;padding:0 var(--gut);border-top:1px solid var(--rule);font-size:13px}
+.filters{display:flex;flex-wrap:wrap;gap:0 22px}
+.filters button{min-height:44px;color:var(--stone);white-space:pre}
+.filters button[aria-pressed="true"]{color:var(--paper);text-decoration:underline;text-underline-offset:4px}
+
+/* wall */
+.wall{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:420px;gap:1px;background:var(--rule);border-block:1px solid var(--rule)}
+.tile{position:relative;display:flex;align-items:center;justify-content:center;background:var(--bg);color:var(--fg);transition:opacity .35s ease}
+.tile.wide{grid-column:span 2}
+.tile .eye{font-size:46px}
+.tile.wide .eye{font-size:64px}
+.tile .corner{color:inherit;font-size:13px}
+.tile .tl,.tile .tr{top:20px}
+.tile .tl{left:22px}.tile .tr{right:22px}
+.tile .bl{left:22px;bottom:20px;text-align:left;display:flex;flex-direction:column;gap:8px}
+.tile .bl strong{font-size:18px;font-weight:400;line-height:1.1}
+.tile .br{right:22px;bottom:6px;display:flex;gap:18px}
+.tile .br button,.tile .br a{min-height:44px;display:inline-flex;align-items:center;color:inherit}
+.tile.off{opacity:.16}
+.more{display:flex;justify-content:center;padding:28px var(--gut);font-size:13px}
+.more a{min-height:44px;display:inline-flex;align-items:center}
+
+/* what we do */
+.do{border-top:1px solid var(--rule);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--rule)}
+.do div{position:relative;background:var(--ink);height:300px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;padding:0 20px;text-align:center}
+.do .eye{font-size:34px}
+.do h3{margin:0;font-size:15px;font-weight:400}
+.do p{margin:0;font-size:13px;line-height:1.5;color:var(--stone);max-width:28ch}
+
+/* about + contact frames */
+.about{min-height:640px;gap:40px;padding:120px var(--gut)}
+.about .eye{font-size:64px}
+.about .eye.inline{font-size:inherit;line-height:inherit}
+.about p{margin:0;max-width:34ch;font-size:30px;line-height:1.3;text-wrap:balance}
+.about p.small{max-width:56ch;font-size:15px;line-height:1.6;color:var(--stone);text-wrap:pretty}
+.contact{min-height:640px;gap:44px;border-top:1px solid var(--rule);padding:120px var(--gut)}
+.contact .pile{font-size:34px}
+.mail{margin:0;font-size:24px;line-height:1;white-space:pre;user-select:all}
+.cword{margin:0;font-size:72px;line-height:1;white-space:pre}
+.cword .eye,.eye.inline{font-weight:400}
+.contact dl{display:grid;grid-template-columns:auto auto;gap:6px 24px;margin:0;font-size:13px;text-align:left}
+.contact dt{color:var(--stone)}
+.contact dd{margin:0}
+
+/* player */
+.player{position:fixed;inset:0;z-index:20;background:var(--bg);color:var(--fg);display:flex;align-items:center;justify-content:center}
+.player .eye{font-size:96px}
+.player .corner{color:inherit}
+.player .tr{top:calc(var(--gut) - 15px + env(safe-area-inset-top,0px));right:calc(var(--gut) + env(safe-area-inset-right,0px))}
+.player .tr button{min-height:44px;font-size:13px}
+
+@media (max-width:760px){
+  :root{--gut:16px}
+  .hero{min-height:0;padding-block:120px 110px;gap:40px}
+  .pile{font-size:24px}
+  .word{font-size:28px}
+  .corner.tl{max-width:60%}
+  .intro{grid-template-columns:1fr;padding-block:64px}
+  .intro p{grid-column:auto;font-size:24px}
+  .wall{grid-template-columns:1fr;grid-auto-rows:320px}
+  .tile.wide{grid-column:auto}
+  .tile.wide .eye,.tile .eye{font-size:40px}
+  .do{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .do div{height:240px}
+  .about{min-height:0;padding-block:96px}
+  .about p{font-size:22px}
+  .contact{min-height:0;padding-block:96px 120px}
+  .mail{font-size:18px}
+  .cword{font-size:44px}
+  .player .eye{font-size:48px}
+}
