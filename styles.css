@@ -52,7 +52,7 @@ a:focus-visible,button:focus-visible{outline:1px solid currentColor;outline-offs
 .intro p{grid-column:span 3;margin:0;max-width:30ch;font-size:40px;line-height:1.2;text-wrap:balance}
 
 /* work bar */
-.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--ink);border-bottom:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px 24px;min-height:56px;padding:0 var(--gut);border-top:1px solid var(--rule);font-size:13px}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--ink);border-bottom:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px 24px;min-height:56px;padding:0 calc(var(--gut) + 88px) 0 var(--gut);border-top:1px solid var(--rule);font-size:13px}
 .filters{display:flex;flex-wrap:wrap;gap:0 22px}
 .filters button{min-height:44px;color:var(--stone);white-space:pre}
 .filters button[aria-pressed="true"]{color:var(--paper);text-decoration:underline;text-underline-offset:4px}
@@ -71,6 +71,12 @@ a:focus-visible,button:focus-visible{outline:1px solid currentColor;outline-offs
 .tile .br{right:22px;bottom:6px;display:flex;gap:18px}
 .tile .br button,.tile .br a{min-height:44px;display:inline-flex;align-items:center;color:inherit}
 .tile.off{opacity:.16}
+.tile{cursor:pointer}
+.tile .eye{transition:transform .25s ease}
+.tile:hover .eye{transform:scale(1.18)}
+.tile:hover .bl strong{text-decoration:underline;text-underline-offset:4px}
+.tile.off{cursor:default}
+.tile.off:hover .eye{transform:none}
 .bgv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
 .tile .eye{position:relative;z-index:1}
 .tile .corner,.player .corner{z-index:1}
@@ -105,7 +111,20 @@ a:focus-visible,button:focus-visible{outline:1px solid currentColor;outline-offs
 .player{position:fixed;inset:0;z-index:20;background:var(--bg);color:var(--fg);display:flex;align-items:center;justify-content:center}
 .player .corner{color:inherit}
 .player .tr{top:calc(var(--gut) - 15px + env(safe-area-inset-top,0px));right:calc(var(--gut) + env(safe-area-inset-right,0px))}
-.player .tr button{min-height:44px;font-size:13px}
+.player .tr button,.player .bl button{min-height:44px;font-size:13px;color:inherit}
+.player .bl{bottom:calc(var(--gut) - 15px + env(safe-area-inset-bottom,0px))}
+.player{cursor:zoom-out}
+.player .corner{cursor:auto}
+
+/* back to top eye */
+.topeye{position:fixed;top:env(safe-area-inset-top,0px);right:calc(var(--gut) - 10px + env(safe-area-inset-right,0px));z-index:15;height:56px;min-width:44px;padding:0 10px;display:flex;align-items:center;justify-content:center;color:var(--paper);mix-blend-mode:difference;opacity:0;pointer-events:none;transition:opacity .25s ease}
+.topeye .eye{font-size:20px}
+.topeye.on{opacity:1;pointer-events:auto}
+
+/* copy email */
+.mail button{font:inherit;color:var(--paper);cursor:copy}
+.mail button:hover{text-decoration:underline;text-underline-offset:6px}
+.copied{margin:-28px 0 0;min-height:16px;font-size:13px;line-height:1;color:var(--stone)}
 
 @media (max-width:760px){
   :root{--gut:16px}
