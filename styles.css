@@ -9,6 +9,8 @@
   color-scheme:dark;
 }
 *{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0}
 body{background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:15px;line-height:1.6;overflow-x:clip}
 a{color:var(--paper);text-decoration:none}
 a:hover{text-decoration:underline;text-underline-offset:4px}
@@ -109,6 +111,7 @@ a:focus-visible,button:focus-visible{outline:1px solid currentColor;outline-offs
   .tile.wide .eye,.tile .eye{font-size:40px}
   .do{grid-template-columns:repeat(2,minmax(0,1fr))}
   .do div{height:240px}
+  .do .corner{display:none}
   .about{min-height:0;padding-block:96px}
   .about p{font-size:22px}
   .contact{min-height:0;padding-block:96px 120px}
